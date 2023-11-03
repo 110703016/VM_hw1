@@ -33,7 +33,7 @@ static int proc_init(void)
     ////<在此加入程式碼>////
     /////////////////////
     //用變數記住載入模組時的jiffies
-    
+    init_jiffies = jiffies; 
     
         // 創出/proc/seconds這個項目
         proc_create(PROC_NAME, 0, NULL, &proc_ops);
@@ -75,7 +75,7 @@ static ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, 
                      //////////////////////
                      ////<在此加入程式碼>////
                      /////////////////////
-                     );
+		      (jiffies - init_jiffies)/HZ );
 
     
         // 將buffer的內容複製到用戶空間usr_buf
